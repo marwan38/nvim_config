@@ -1,16 +1,53 @@
-local fn = vim.fn
-local o = vim.opt
+local opt = vim.opt
 
-o.completeopt = { "menu", "menuone", "noselect", "noinsert" } -- A comma separated list of options for Insert mode completion
-o.number = true -- show line numbers (or only the current one)
-o.relativenumber = true -- line numbers
-o.shiftwidth = 4
-o.smartcase = true -- smart case
-o.smartindent = true -- make indenting smarter again
-o.swapfile = false -- enable/disable swap file creation
-o.tabstop = 4 -- how many columns a tab counts for
-o.termguicolors = true -- set term gui colors (most terminals support this)
-o.undodir = fn.stdpath("data") .. "/undodir" -- set undo directory
-o.undofile = true -- enable/disable undo file creation
-o.wildignorecase = true -- When set case is ignored when completing file names and directories
-o.wildmode = "full"
+opt.nu = true;
+opt.relativenumber = true
+
+opt.tabstop = 4
+opt.softtabstop = 4
+opt.shiftwidth = 4
+opt.expandtab = true
+
+opt.clipboard:append "unnamedplus"
+
+opt.smartindent = true
+
+opt.splitbelow = true
+opt.splitright = true
+
+opt.ignorecase = true
+opt.smartcase = true
+
+opt.wrap = false
+
+opt.swapfile = false
+opt.backup = false
+opt.undodir = os.getenv "HOME" .. "/.undodir"
+opt.undofile = true
+
+opt.hlsearch = true
+opt.incsearch = true
+
+opt.termguicolors = true
+
+opt.scrolloff = 12
+opt.signcolumn = "yes"
+opt.isfname:append "@-@"
+
+opt.updatetime = 50
+
+opt.colorcolumn = "80"
+
+-- opt.list = true
+-- opt.listchars:append("eol:↵")
+opt.fillchars = "vert:│,diff:╱,foldclose:,foldopen:,fold: ,msgsep:─"
+
+-- opt.diffopt = {
+--   "algorithm:histogram",
+--   "internal",
+--   "indent-heuristic",
+--   "filler",
+--   "closeoff",
+--   "iwhite",
+--   "vertical"
+-- }

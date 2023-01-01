@@ -1,1 +1,1 @@
-vim.cmd([[colo habamax]])
+require "user.lsp"

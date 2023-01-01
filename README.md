@@ -1,3 +1,11 @@
-# Neovim Lazy Starter
+# Neovim config
 
-A lazy starter kit if you're not sure how to start using [folke/lazy](https://github.com/folke/lazy.nvim).
+Yet another neovim config.
+
+Big inspirations, sources, and special thanks
+
+[ThePrimeagen](https://github.com/ThePrimeagen/init.lua)
+[TjDevries](https://github.com/tjdevries/config_manager)
+[Folke](https://github.com/folke/dot)
+[Sindrets](https://github.com/sindrets/dotfiles)
+[JoeLazar](https://github.com/joelazar/nvim-config)
