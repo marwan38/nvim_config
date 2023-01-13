@@ -10,10 +10,12 @@ vim.keymap.set({      "v" }, "<"        , "<gv",      opts)
 vim.keymap.set({      "v" }, ">"        , ">gv",      opts)
 
 -- Tabs
-vim.keymap.set({ "n"      }, "<leader>x", '<Cmd>tabc<CR>')
+vim.keymap.set({ "n"      }, "<leader>x", '<Cmd>tabc<CR>', { desc = "Tab close" })
+vim.keymap.set({ "n"      }, "<leader><Tab>", '<Cmd>tabnext<CR>', { desc = "Tab next" })
+vim.keymap.set({ "n"      }, "<leader>tn", '<Cmd>tabnew<CR>', { desc = "[T]ab [n]ew" })
 
 -- Buffers
-vim.keymap.set({ "n"      }, "<leader>bk", '<Cmd>bd<CR>', {desc = "[B]uffer [K]ill"})
+vim.keymap.set({ "n"      }, "<leader>bk", '<Cmd>bd<CR>', { desc = "[B]uffer [K]ill" })
 
 -- Search and replace with word under cursor
 vim.keymap.set({ "n"      }, "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])

@@ -13,9 +13,14 @@ return {
     },
 
     {
+        "nvim-treesitter/nvim-treesitter-context",
+        event = "BufReadPre",
+        config = true,
+    },
+
+    {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
-        event = "BufReadPost",
         dependencies = {
             "nvim-treesitter/nvim-treesitter-textobjects",
         },
@@ -92,7 +97,7 @@ return {
                 },
                 textobjects = {
                     select = {
-                        enable = false,
+                        enable = true,
                         lookahead = true,
                         keymaps = {
                             -- You can use the capture groups defined in textobjects.scm
@@ -103,7 +108,7 @@ return {
                         },
                     },
                     move = {
-                        enable = false,
+                        enable = true,
                         set_jumps = true, -- whether to set jumps in the jumplist
                         goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer" },
                         goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer" },
@@ -114,6 +119,15 @@ return {
                         enable = false,
                         peek_definition_code = {
                             ["gD"] = "@function.outer",
+                        },
+                    },
+                    swap = {
+                        enable = true,
+                        swap_next = {
+                            ["<leader>a"] = "@parameter.inner",
+                        },
+                        swap_previous = {
+                            ["<leader>A"] = "@parameter.inner",
                         },
                     },
                 },

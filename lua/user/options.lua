@@ -2,6 +2,7 @@ local opt = vim.opt
 
 opt.nu = true;
 opt.relativenumber = true
+opt.cursorline = true -- Highlight current row
 
 opt.tabstop = 4
 opt.softtabstop = 4
@@ -51,3 +52,6 @@ opt.fillchars = "vert:│,diff:╱,foldclose:,foldopen:,fold: ,msgsep:─"
 --   "iwhite",
 --   "vertical"
 -- }
+
+-- Abbreviations
+vim.cmd('cabbrev T Telescope')

@@ -5,6 +5,7 @@ return {
         { "<leader>gh", "<Cmd>DiffviewFileHistory<CR>", "Diff view history" },
         { "<leader>gH", "<Cmd>DiffviewFileHistory %<CR>", "Diff view file history" },
         { "<leader>gh", "<Esc><Cmd>'<,'>DiffviewFileHistory<CR>", "Diff view range file history" },
+        { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "DiffView" }
     },
     config = function()
         require("diffview").setup {}

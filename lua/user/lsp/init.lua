@@ -195,6 +195,11 @@ M.setup_servers = function()
                         config.on_attach(_, bufnr)
                     end,
                     capabilities = capabilities,
+                    settings = {
+                        ["rust-analyzer"] = {
+                            inlayHints = { locationLinks = false },
+                        },
+                    },
                 },
             }
         else
@@ -205,7 +210,9 @@ M.setup_servers = function()
     -- Setup the LSP servers
     mason_lspconfig.setup_handlers {
         function(server_name)
-            setup_server(server_name, servers[server_name])
+            if servers[server_name] ~= nil then
+                setup_server(server_name, servers[server_name])
+            end
         end,
     }
 

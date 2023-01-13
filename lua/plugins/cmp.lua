@@ -10,12 +10,19 @@ local M = {
         "onsails/lspkind-nvim",
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
+        "rafamadriz/friendly-snippets",
     },
 }
 
 M.config = function()
     local cmp = require "cmp"
     local lspkind = require "lspkind"
+
+    local luasnip = require "luasnip"
+    local has_words_before = function()
+        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
+    end
 
     cmp.setup {
         mapping = {
@@ -54,7 +61,24 @@ M.config = function()
                 end,
             },
 
-            ["<tab>"] = cmp.config.disable,
+            -- ["<tab>"] = cmp.config.disable,
+            ["<Tab>"] = cmp.mapping(function(fallback)
+                if luasnip.expand_or_jumpable() then
+                    luasnip.expand_or_jump()
+                elseif has_words_before() then
+                    cmp.complete()
+                else
+                    fallback()
+                end
+            end, { "i", "s" }),
+
+            ["<S-Tab>"] = cmp.mapping(function(fallback)
+                if luasnip.jumpable(-1) then
+                    luasnip.jump(-1)
+                else
+                    fallback()
+                end
+            end, { "i", "s" }),
         },
 
         -- Youtube:
@@ -102,6 +126,8 @@ M.config = function()
             ghost_text = false,
         },
     }
+
+    require("luasnip.loaders.from_vscode").lazy_load() -- use it with: rafamadriz/friendly-snippets. load snippets in the vscode, from friendly-snippets. If the language has too many then it might be a tad slow
 end
 
 return M

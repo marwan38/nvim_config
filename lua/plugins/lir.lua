@@ -5,7 +5,7 @@ local M = {
         {
             "<leader>ee",
             function()
-                require("lir.float").toggle()
+                require("lir.float").toggle(vim.fn.expand('%:p:h'))
             end,
             { desc = "Lir toggle" },
         },
@@ -27,7 +27,10 @@ M.config = function()
     require("lir").setup {
         show_hidden_files = true,
         ignore = {}, -- { ".DS_Store" "node_modules" } etc.
-        devicons_enable = true,
+        devicons = {
+            enable = true,
+            highlight_dirname = false
+        },
 
         mappings = {
             ["l"] = actions.edit,
@@ -56,7 +59,7 @@ M.config = function()
             ["P"] = clipboard_actions.paste,
         },
         float = {
-            winblend = 15,
+            winblend = 5,
             curdir_window = {
                 enable = true,
                 highlight_dirname = true,

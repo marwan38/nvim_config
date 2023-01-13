@@ -5,12 +5,10 @@ require "user/lazy_bootstrap" -- bootstraps folke/lazy
 ----------------------------------------------[[  User Settings ]]
 
 require "user"
-require "user.options"
-require "user.autocommands"
-require "user.mapping"
 
 ----------------------------------------------[[  Load Plugins  ]]
 
+-- loads each lua/plugin/*
 require("lazy").setup("plugins", {
     disabled_plugins = {
         "gzip",
@@ -22,4 +20,4 @@ require("lazy").setup("plugins", {
         "tutor",
         "zipPlugin",
     },
-}) -- loads each lua/plugin/*
+})
