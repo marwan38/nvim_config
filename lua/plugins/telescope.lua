@@ -5,7 +5,7 @@ local M = {
         { "nvim-lua/plenary.nvim" },
     },
     cmd = { "Telescope", "Tel" }, -- lazy loads on these commands
-    keys = { "<leader>p", "<C-p>" }, -- lazy loads on this pattern
+    keys = { "<leader>p", "<C-p>", "<leader>rf" }, -- lazy loads on this pattern
 }
 
 M.config = function()
