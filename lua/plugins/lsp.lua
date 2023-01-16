@@ -1,6 +1,7 @@
 local M = {
     "neovim/nvim-lspconfig",
-    -- event = "BufReadPre",
+    event = "BufReadPre",
+    cmd = { "Mason" },
     dependencies = {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",

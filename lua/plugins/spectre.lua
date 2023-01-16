@@ -1,4 +1,5 @@
 return {
 	"windwp/nvim-spectre",
-    config = true
+    config = true,
+    cmd = "Spectre"
 }

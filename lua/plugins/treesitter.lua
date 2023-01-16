@@ -5,10 +5,10 @@ return {
         "mfussenegger/nvim-treehopper",
         keys = { { "m", mode = { "o", "x" } } },
         config = function()
-            vim.cmd [[
-        omap     <silent> m :<C-U>lua require('tsht').nodes()<CR>
-        xnoremap <silent> m :lua require('tsht').nodes()<CR>
-      ]]
+            vim.keymap.set({ "o", "x" }, "m", function()
+                local tsht = require "tsht"
+                tsht.nodes()
+            end, { silent = true })
         end,
     },
 
@@ -19,10 +19,17 @@ return {
     },
 
     {
+        "windwp/nvim-ts-autotag",
+        ft = {"typescriptreact"},
+        config = true
+    },
+
+    {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
         dependencies = {
             "nvim-treesitter/nvim-treesitter-textobjects",
+            "JoosepAlviste/nvim-ts-context-commentstring",
         },
         config = function()
             require("nvim-treesitter.configs").setup {

@@ -61,7 +61,7 @@ M.config = function()
         float = {
             winblend = 5,
             curdir_window = {
-                enable = true,
+                enable = false,
                 highlight_dirname = true,
             },
 

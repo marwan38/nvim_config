@@ -80,22 +80,6 @@ M.on_attach = function(_, bufnr)
     end, { desc = "Format current buffer with LSP" })
 
     nmap("<leader>f", "<Cmd>Format<CR>", "Format code")
-
-    -- Diagnostics on hover
-    vim.api.nvim_create_autocmd("CursorHold", {
-        buffer = bufnr,
-        callback = function()
-            local opts = {
-                focusable = false,
-                close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-                border = "rounded",
-                source = "always",
-                prefix = " ",
-                scope = "cursor",
-            }
-            vim.diagnostic.open_float(nil, opts)
-        end,
-    })
 end
 
 local setup_null_ls = function()
@@ -115,7 +99,7 @@ local setup_null_ls = function()
         sources = {
             diagnostics.ansiblelint,
             diagnostics.markdownlint,
-            diagnostics.stylelint,
+            -- diagnostics.stylelint,
             diagnostics.phpcs.with {
                 command = "./vendor/bin/phpcs",
             },
@@ -127,10 +111,10 @@ local setup_null_ls = function()
 
             formatting.stylua,
             formatting.prettier,
-            formatting.stylelint.with {
-                filetypes = { "scss", "less", "css", "sass", "typescript", "typescriptreact" },
-                command = "./node_modules/.bin/stylelint",
-            },
+            -- formatting.stylelint.with {
+            --     filetypes = { "scss", "less", "css", "sass", "typescript", "typescriptreact" },
+            --     command = "./node_modules/.bin/stylelint",
+            -- },
             formatting.phpcbf.with {
                 command = "./vendor/bin/phpcbf",
             },
