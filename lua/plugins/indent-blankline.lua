@@ -18,6 +18,7 @@ local M = {
             "checkhealth",
             "help",
             "man",
+            "fugitive",
             "",
         },
     },

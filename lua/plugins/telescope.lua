@@ -3,6 +3,7 @@ local M = {
     branch = "0.1.x",
     dependencies = {
         { "nvim-lua/plenary.nvim" },
+        { "nvim-telescope/telescope-fzf-native.nvim", build = 'make' },
     },
     cmd = { "Telescope", "Tel" }, -- lazy loads on these commands
     keys = { "<leader>p", "<C-p>", "<leader>rf" }, -- lazy loads on this pattern
@@ -19,11 +20,12 @@ M.config = function()
     telescope.setup {
         mappings = {
             i = {
-                ["<C-w>"] = actions.delete_buffer,
+                ["<leader>bk"] = actions.delete_buffer,
             },
             n = {},
         },
     }
+    require('telescope').load_extension('fzf')
 
     local builtin = require "telescope.builtin"
     vim.keymap.set("n", "<C-p>", builtin.git_files, { desc = "Git files" })

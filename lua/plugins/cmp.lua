@@ -62,7 +62,7 @@ M.config = function()
             },
 
             -- ["<tab>"] = cmp.config.disable,
-            ["<Tab>"] = cmp.mapping(function(fallback)
+            ["<C-j>"] = cmp.mapping(function(fallback)
                 if luasnip.expand_or_jumpable() then
                     luasnip.expand_or_jump()
                 elseif has_words_before() then
@@ -72,7 +72,7 @@ M.config = function()
                 end
             end, { "i", "s" }),
 
-            ["<S-Tab>"] = cmp.mapping(function(fallback)
+            ["<C-k>"] = cmp.mapping(function(fallback)
                 if luasnip.jumpable(-1) then
                     luasnip.jump(-1)
                 else

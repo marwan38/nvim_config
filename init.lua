@@ -1,15 +1,9 @@
-----------------------------------------------[[ Bootstrap Lazy ]]
-
-require "user/lazy_bootstrap" -- bootstraps folke/lazy
-
-----------------------------------------------[[  User Settings ]]
-
+require "user/lazy_bootstrap"
 require "user"
-
-----------------------------------------------[[  Load Plugins  ]]
-
--- loads each lua/plugin/*
 require("lazy").setup("plugins", {
+    change_detection = {
+        notify = false,
+    },
     disabled_plugins = {
         "gzip",
         "matchit",

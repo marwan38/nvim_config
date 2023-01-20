@@ -18,4 +18,10 @@ return {
         keys = { { "<C-w>z", "<cmd>WindowsMaximize<cr>", desc = "Zoom" } },
         config = true,
     },
+
+    -- Better % and html element colors
+    {
+        "andymass/vim-matchup",
+        event = "VeryLazy",
+    },
 }
