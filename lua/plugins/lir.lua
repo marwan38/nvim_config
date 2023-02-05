@@ -5,7 +5,7 @@ local M = {
         {
             "<leader>ee",
             function()
-                require("lir.float").toggle(vim.fn.expand('%:p:h'))
+                require("lir.float").toggle(vim.fn.expand "%:p:h")
             end,
             { desc = "Lir toggle" },
         },
@@ -24,12 +24,14 @@ M.config = function()
     local mark_actions = require "lir.mark.actions"
     local clipboard_actions = require "lir.clipboard.actions"
 
-    require("lir").setup {
+    local lir = require "lir"
+
+    lir.setup {
         show_hidden_files = true,
         ignore = {}, -- { ".DS_Store" "node_modules" } etc.
         devicons = {
             enable = true,
-            highlight_dirname = false
+            highlight_dirname = false,
         },
 
         mappings = {
@@ -38,25 +40,35 @@ M.config = function()
             ["<C-s>"] = actions.split,
             ["<C-v>"] = actions.vsplit,
             ["<C-t>"] = actions.tabedit,
+            ["<C-Q>"] = function()
+                local ctx = lir.get_context()
+                local path_list = vim.tbl_map(function(items)
+                    return { filename = string.gsub(items.fullpath, "//", "/"), lnum = 1, col = 1 }
+                end, ctx.files)
+
+                vim.fn.setqflist(path_list, "r")
+            end,
 
             ["h"] = actions.up,
             ["q"] = actions.quit,
 
-            ["K"] = actions.mkdir,
+            ["D"] = actions.mkdir,
             ["N"] = actions.newfile,
-            ["R"] = actions.rename,
+            ["r"] = actions.rename,
             ["@"] = actions.cd,
-            ["Y"] = actions.yank_path,
+            ["y"] = clipboard_actions.copy,
+            ["gy"] = actions.yank_path,
             ["."] = actions.toggle_show_hidden,
-            ["D"] = actions.delete,
+            ["d"] = actions.delete,
 
+            ["t"] = mark_actions.toggle_mark,
             ["J"] = function()
-                mark_actions.toggle_mark()
+                mark_actions.toggle_mark {}
                 vim.cmd "normal! j"
             end,
-            ["C"] = clipboard_actions.copy,
-            ["X"] = clipboard_actions.cut,
-            ["P"] = clipboard_actions.paste,
+            ["c"] = clipboard_actions.copy,
+            ["x"] = clipboard_actions.cut,
+            ["p"] = clipboard_actions.paste,
         },
         float = {
             winblend = 5,

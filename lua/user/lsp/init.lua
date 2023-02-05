@@ -17,7 +17,18 @@ local servers = {
     dockerls = {},
     graphql = {},
     html = {},
-    jsonls = { disableFormatting = true },
+    jsonls = {
+        disableFormatting = true,
+        init_options = {
+            provideFormatter = false,
+        },
+        settings = {
+            json = {
+                schemas = require("schemastore").json.schemas(),
+                validate = { enable = true },
+            },
+        },
+    },
     yamlls = {},
 
     sumneko_lua = {
@@ -130,6 +141,8 @@ local setup_null_ls = function()
             },
             formatting.mdformat,
             formatting.shfmt,
+
+            require("typescript.extensions.null-ls.code-actions"),
         },
     }
 end

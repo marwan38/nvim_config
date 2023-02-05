@@ -1,22 +1,26 @@
-local opts = { silent = true }
-local expr_opts = { silent = true, expr = true }
+local utils = require('user.utils')
 
 vim.g.mapleader = " "
 
--- stylua: ignore start
-vim.keymap.set({ "n"      }, "x"        , '"_x')
-vim.keymap.set({ "n"      }, "<ESC>"    , "<Cmd>noh<CR>", opts)
-vim.keymap.set({      "v" }, "<"        , "<gv",      opts)
-vim.keymap.set({      "v" }, ">"        , ">gv",      opts)
+vim.keymap.set({ "n" }, "x", '"_x')
+vim.keymap.set({ "n" }, "c", '"_c')
+vim.keymap.set({ "n" }, "<ESC>", "<Cmd>noh<CR>", utils.opts)
+vim.keymap.set({ "v" }, "<", "<gv", utils.opts)
+vim.keymap.set({ "v" }, ">", ">gv", utils.opts)
+
+-- Move lines up and down
+vim.keymap.set({ "n", "v" }, "<M-j>", "<Cmd>m .+1<CR>==", utils.set_opts("[M]ove line down"))
+vim.keymap.set({ "n", "v" }, "<M-k>", "<Cmd>m .-2<CR>==", utils.set_opts("[M]ove line up"))
 
 -- Tabs
-vim.keymap.set({ "n"      }, "<leader>x", '<Cmd>tabc<CR>', { desc = "Tab close" })
-vim.keymap.set({ "n"      }, "<leader><Tab>", '<Cmd>tabnext<CR>', { desc = "Tab next" })
-vim.keymap.set({ "n"      }, "<leader>tn", '<Cmd>tabnew<CR>', { desc = "[T]ab [n]ew" })
+vim.keymap.set({ "n" }, "<leader>x", "<Cmd>tabc<CR>", utils.set_opts("Tab close"))
+vim.keymap.set({ "n" }, "<leader><Tab>", "<Cmd>tabnext<CR>", utils.set_opts("Tab next"))
+vim.keymap.set({ "n" }, "<leader>tn", "<Cmd>tabnew<CR>", utils.set_opts("[T]ab [n]ew"))
 
--- Buffers
-vim.keymap.set({ "n"      }, "<leader>bk", '<Cmd>bd<CR>', { desc = "[B]uffer [K]ill" })
+-- Quickfix
+vim.keymap.set({ "n" }, "<C-q>", "<Cmd>copen<CR>")
+vim.keymap.set({ "n" }, "]q", "<Cmd>cnext<CR>")
+vim.keymap.set({ "n" }, "[q", "<Cmd>cprev<CR>")
 
 -- Search and replace with word under cursor
-vim.keymap.set({ "n"      }, "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
--- stylua: ignore end
+vim.keymap.set({ "n" }, "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])

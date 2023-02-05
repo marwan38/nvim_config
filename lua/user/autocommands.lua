@@ -56,3 +56,10 @@ end
 vim.api.nvim_create_autocmd("CursorHold", {
     callback = show_position_diagnostics,
 })
+
+-- Setting filetypes
+vim.filetype.add({
+    extension = {
+        cjs = 'javascript'
+    }
+})

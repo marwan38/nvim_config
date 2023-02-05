@@ -4,6 +4,6 @@ return {
     opts = {
         options = {
             globalstatus = true
-        }
-    }
+        },
+    },
 }
