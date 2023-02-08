@@ -116,6 +116,7 @@ local setup_null_ls = function()
             },
             diagnostics.phpstan.with {
                 command = "./vendor/bin/phpstan",
+                args = { "analyze", "--error-format", "json", "--no-progress", "--memory-limit=1G", "--xdebug", "$FILENAME" },
             },
             diagnostics.yamllint,
             diagnostics.zsh,
@@ -142,7 +143,7 @@ local setup_null_ls = function()
             formatting.mdformat,
             formatting.shfmt,
 
-            require("typescript.extensions.null-ls.code-actions"),
+            require "typescript.extensions.null-ls.code-actions",
         },
     }
 end
@@ -164,7 +165,7 @@ M.setup_servers = function()
     end
 
     local function setup_server(server, config)
-        config = vim.tbl_deep_extend("force", {
+        local mergedConfig = vim.tbl_deep_extend("force", {
             on_attach = function(client, bufnr)
                 M.on_attach(client, bufnr)
 
@@ -177,7 +178,7 @@ M.setup_servers = function()
 
         if server == "tsserver" then
             require("typescript").setup {
-                server = config,
+                server = mergedConfig,
             }
         elseif server == "rust_analyzer" then
             local rt = require "rust-tools"
@@ -189,7 +190,7 @@ M.setup_servers = function()
                         -- Code action groups
                         vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
 
-                        config.on_attach(_, bufnr)
+                        mergedConfig.on_attach(_, bufnr)
                     end,
                     capabilities = capabilities,
                     settings = {
@@ -200,7 +201,7 @@ M.setup_servers = function()
                 },
             }
         else
-            require("lspconfig")[server].setup(config)
+            require("lspconfig")[server].setup(mergedConfig)
         end
     end
 

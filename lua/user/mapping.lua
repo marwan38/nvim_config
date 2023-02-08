@@ -24,3 +24,6 @@ vim.keymap.set({ "n" }, "[q", "<Cmd>cprev<CR>")
 
 -- Search and replace with word under cursor
 vim.keymap.set({ "n" }, "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+-- Stop it
+vim.keymap.set({ "n" }, "q", "<Nop>")

@@ -53,9 +53,9 @@ local function show_position_diagnostics()
 end
 
 -- Diagnostics on hover
-vim.api.nvim_create_autocmd("CursorHold", {
-    callback = show_position_diagnostics,
-})
+-- vim.api.nvim_create_autocmd("CursorHold", {
+--     callback = show_position_diagnostics,
+-- })
 
 -- Setting filetypes
 vim.filetype.add({

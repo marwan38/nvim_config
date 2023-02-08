@@ -1,5 +1,6 @@
 local M = {
     "mfussenegger/nvim-dap",
+    event = "VeryLazy",
     ft = {
         "javascript",
         "javascriptreact",
