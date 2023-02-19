@@ -31,7 +31,7 @@ local servers = {
     },
     yamlls = {},
 
-    sumneko_lua = {
+    lua_ls = {
         disableFormatting = true,
         Lua = {
             diagnostics = {
@@ -104,19 +104,52 @@ local setup_null_ls = function()
     -- formatting sources
     local formatting = builtins.formatting
 
+    local utils = require "null-ls.utils"
+
+    local u = require "null-ls.utils"
+    local is_windows = vim.loop.os_uname().version:match "Windows"
+    local path_separator = is_windows and "\\" or "/"
+
+    -- try get file from project, if not exists try global
+    local function get_composer_executable(exec_name)
+        local exec = u.get_root()
+            .. path_separator
+            .. "vendor"
+            .. path_separator
+            .. "bin"
+            .. path_separator
+            .. exec_name
+        local file = io.open(exec, "r")
+        if file ~= nil then
+            io.close(file)
+            return exec
+        else
+            return exec_name
+        end
+    end
+
     require("null-ls").setup {
         temp_dir = "/tmp",
+        debug = false,
         on_attach = M.on_attach,
         sources = {
             diagnostics.ansiblelint,
             diagnostics.markdownlint,
             -- diagnostics.stylelint,
             diagnostics.phpcs.with {
-                command = "./vendor/bin/phpcs",
+                command = get_composer_executable "phpcs",
             },
             diagnostics.phpstan.with {
-                command = "./vendor/bin/phpstan",
-                args = { "analyze", "--error-format", "json", "--no-progress", "--memory-limit=1G", "--xdebug", "$FILENAME" },
+                command = get_composer_executable "phpstan",
+                args = {
+                    "analyze",
+                    "--error-format",
+                    "json",
+                    "--no-progress",
+                    "--memory-limit=1G",
+                    "$FILENAME",
+                },
+                timeout = 30000,
             },
             diagnostics.yamllint,
             diagnostics.zsh,
@@ -128,10 +161,10 @@ local setup_null_ls = function()
             --     command = "./node_modules/.bin/stylelint",
             -- },
             formatting.phpcbf.with {
-                command = "./vendor/bin/phpcbf",
+                command = get_composer_executable "phpcbf",
             },
             formatting.phpcsfixer.with {
-                command = "./vendor/bin/php-cs-fixer",
+                command = get_composer_executable "php-cs-fixer",
                 args = {
                     "--no-interaction",
                     "--quiet",

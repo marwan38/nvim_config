@@ -20,8 +20,8 @@ return {
 
     {
         "windwp/nvim-ts-autotag",
-        ft = {"typescriptreact"},
-        config = true
+        ft = { "typescriptreact" },
+        config = true,
     },
 
     {
@@ -57,6 +57,7 @@ return {
                     "vim",
                     "yaml",
                     "json",
+                    "query",
                 },
                 sync_install = false,
                 auto_install = false,
@@ -139,8 +140,8 @@ return {
                     },
                 },
                 matchup = {
-                    enable = true
-                }
+                    enable = true,
+                },
             }
         end,
     },

@@ -53,5 +53,10 @@ opt.fillchars = "vert:│,diff:╱,foldclose:,foldopen:,fold: ,msgsep:─"
 --   "vertical"
 -- }
 
+-- Treesitter indentation
+opt.foldmethod="expr"
+opt.foldexpr="nvim_treesitter#foldexpr()"
+opt.foldenable = false
+
 -- Abbreviations
 vim.cmd('cabbrev T Telescope')
