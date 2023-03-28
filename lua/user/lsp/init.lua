@@ -151,8 +151,13 @@ local setup_null_ls = function()
                 },
                 timeout = 30000,
             },
-            diagnostics.yamllint,
+            -- diagnostics.yamllint,
             diagnostics.zsh,
+
+            formatting.sqlfluff.with {
+                extra_args = { "--dialect", "mysql" },
+                timeout = 30000,
+            },
 
             formatting.stylua,
             formatting.prettier,
@@ -173,7 +178,7 @@ local setup_null_ls = function()
                     "$FILENAME",
                 },
             },
-            formatting.mdformat,
+            -- formatting.mdformat,
             formatting.shfmt,
 
             require "typescript.extensions.null-ls.code-actions",
@@ -189,7 +194,7 @@ M.setup_servers = function()
     capabilities = cmp_lsp.default_capabilities(capabilities)
 
     mason_lspconfig.setup {
-        ensure_installed = vim.tbl_keys(servers),
+        -- ensure_installed = vim.tbl_keys(servers),
     }
 
     local function disable_lsp_formatting(client)
@@ -246,6 +251,8 @@ M.setup_servers = function()
             end
         end,
     }
+
+    setup_server("tsserver", servers["tsserver"])
 
     setup_null_ls()
 end

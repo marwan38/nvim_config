@@ -17,7 +17,7 @@ local M = {
         -- Typescript lsp
         "jose-elias-alvarez/typescript.nvim",
         -- JSON Schemas for jsonls
-        "b0o/schemastore.nvim"
+        "b0o/schemastore.nvim",
     },
 }
 

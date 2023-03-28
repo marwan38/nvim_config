@@ -30,6 +30,7 @@ return {
         dependencies = {
             "nvim-treesitter/nvim-treesitter-textobjects",
             "JoosepAlviste/nvim-ts-context-commentstring",
+            "marwan38/treesitter-php-inline-sql",
         },
         config = function()
             require("nvim-treesitter.configs").setup {

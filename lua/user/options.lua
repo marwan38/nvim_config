@@ -19,7 +19,7 @@ opt.splitright = true
 opt.ignorecase = true
 opt.smartcase = true
 
-opt.wrap = false
+opt.wrap = true
 
 opt.swapfile = false
 opt.backup = false
@@ -40,7 +40,7 @@ opt.updatetime = 50
 opt.colorcolumn = "80"
 
 -- opt.list = true
--- opt.listchars:append("eol:↵")
+opt.listchars:append("eol:↵,precedes:<,extends:>")
 opt.fillchars = "vert:│,diff:╱,foldclose:,foldopen:,fold: ,msgsep:─"
 
 -- opt.diffopt = {
