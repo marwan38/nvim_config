@@ -29,7 +29,13 @@ local servers = {
             },
         },
     },
-    yamlls = {},
+    yamlls = {
+        settings = {
+            yaml = {
+                keyOrdering = false, -- Very annoying
+            },
+        },
+    },
 
     lua_ls = {
         disableFormatting = true,
