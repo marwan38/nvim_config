@@ -184,12 +184,11 @@ M.config = function()
             request = "launch",
             port = 9003,
             pathMappings = {
-                ["/srv/archipro/www/marwan/"] = "${workspaceFolder}/",
+                ["/srv/archipro/www/marwan_1690767734/"] = "${workspaceFolder}/",
             },
             stopOnEntry = false,
             ignore = {
-                "**/silverstripe-cache/**/*.php",
-                "**/vendor/**/*.php",
+                "**/silverstripe-cache/**/*.php"
             },
             hostname = "0.0.0.0",
         },

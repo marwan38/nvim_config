@@ -39,7 +39,7 @@ opt.updatetime = 50
 
 opt.colorcolumn = "80"
 
--- opt.list = true
+opt.list = true
 opt.listchars:append("eol:↵,precedes:<,extends:>")
 opt.fillchars = "vert:│,diff:╱,foldclose:,foldopen:,fold: ,msgsep:─"
 

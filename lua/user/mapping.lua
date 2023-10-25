@@ -26,4 +26,4 @@ vim.keymap.set({ "n" }, "[q", "<Cmd>cprev<CR>")
 vim.keymap.set({ "n" }, "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- Stop it
-vim.keymap.set({ "n" }, "q", "<Nop>")
+-- vim.keymap.set({ "n" }, "q", "<Nop>")

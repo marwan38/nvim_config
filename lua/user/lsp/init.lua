@@ -17,6 +17,7 @@ local servers = {
     dockerls = {},
     graphql = {},
     html = {},
+    gopls = {},
     jsonls = {
         disableFormatting = true,
         init_options = {
