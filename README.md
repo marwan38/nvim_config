@@ -1,11 +1,4 @@
-# Neovim config
+# 💤 LazyVim
 
-Yet another neovim config.
-
-Big inspirations, sources, and special thanks
-
-[ThePrimeagen](https://github.com/ThePrimeagen/init.lua)
-[TjDevries](https://github.com/tjdevries/config_manager)
-[Folke](https://github.com/folke/dot)
-[Sindrets](https://github.com/sindrets/dotfiles)
-[JoeLazar](https://github.com/joelazar/nvim-config)
+A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
+Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
